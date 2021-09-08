@@ -52,15 +52,15 @@ print("Enter your name")
 name = input()
 
 # display today's date
-print("\nHello", name + ". Today's Date is", monthn, day, suffix, "of", year, ".")
+print(("\nHello, {name}. Today's Date is {monthn} {day}{suffix} of {year}.").format(name=name, monthn=monthn, day=day, suffix=suffix, year=year))
 
 
 # is the product even or odd?
 # display the correct statement
 if (product % 2) == 0:
-    print("The product of the month and day is", product, ',', "which is an even number.")
+    print(("The product of the month and day is {product}, which is an even number.").format(product=product))
 else:
-    print("The product of the month and day is", product, ',', "which is an odd number.")
+    print(("The product of the month and day is {product}, which is an odd number.").format(product=product))
 
 # print days counted statement
 print("\nIf you counted the days this month so far you would have")
