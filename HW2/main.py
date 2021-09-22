@@ -45,96 +45,140 @@ Open: Restarts the main .py file and generates a new random amount of foods
 """
 #import
 import random
+from array import *
+# from hw2lib import food
 
-# -----Generate a quantity for each of the menu items-----
-# Entrees (Random quantity between 1 and 6 of each)
-Chicken = random.randint(1,6)
-Beef = random.randint(1,6)
-Vegetarian = random.randint(1,6)
+# store flag activates the randomizer for food
+StoreFlag = 1
 
-# Sides (Random quantity between 5 and 10 of each)
-Soup = random.randint(5,10)
-Salad = random.randint(5,10)
-
-# Wines (Random quantity between 2 and 5 each)
-Merlot = random.randint(2,5)
-Chardonnay = random.randint(2,5)
-Pinot_Noir = random.randint(2,5)
-Rose = random.randint(2,5)
-
-# Desserts (Random quantity between 1 and 3 each)
-Flan = random.randint(1,3)
-Creme_Brulee = random.randint(1,3)
-Chocolate_Moose = random.randint(1,3)
-Cheesecake = random.randint(1,3)
-
-# -----prompt the user to input a role-----
-# Waiter Customer Manager
-# Loops until input is not between 1-3
-role_flag = 1
-while role_flag:
-    print ("\nWhat [role] do you want? (Type corresponding number)")
-    print ("(1)Waiter (2)Customer (3)Manager")
-    role = input("Enter your choice:")
-
-    irole = int(role) #convert to int
-
-    # checks the interger in irole
-    # after the correct role is entered flag is turned off
-    if 1 > irole or irole > 3:
-        print ("\n[Enter a number between 1 and 3]")
-    else:
-        role_flag = 0
-
-"""
-# Set role string
-srole = {
-    1 : "Waiter",
-    2 : "Customer",
-    3 : "Manager",
+#creates the dictionary
+FoodDict = {
+    0: 'Chicken',
+    1: 'Beef',
+    2: 'Vegetarian',
+    3: 'Soup',
+    4: 'Salad',
+    5: 'Merlot',
+    6: 'Chardonnay',
+    7: 'Pinot_Noir',
+    8: 'Rose',
+    9: 'Flan',
+    10: 'Creme_Brulee',
+    11: 'Chocolate_Moose',
+    12: 'Cheesecake'
 }
+#StoreFlag = 2 = close
+while StoreFlag != 2:
 
-print("srole =", srole)
-"""
+    # -----Checks if food needs to be randomized-----
+    # StoreFlag = 1 = open
+    # Sets the flag to 0 until open is selected
+    if StoreFlag == 1:
 
-# prompt the user an action based on role
-# Waiter Customer Manager
-action_flag = 1
-while action_flag:
-    print("\nWhat [action] do you want? (Type corresponding number)")
+        # -----Generate a quantity for each of the menu items-----
+        # Creates a food array with 13
+        food = array('i', [])
+        # Entrees (Random quantity between 1 and 6 of each)
+        for i in range(0,3):
+            food.append(random.randint(1,6))
+        # Sides (Random quantity between 5 and 10 of each)
+        for i in range(0,2):
+            food.append(random.randint(5,10))
+        # Wines (Random quantity between 2 and 5 each)
+        for i in range(0, 4):
+            food.append(random.randint(2, 5))
+        # Desserts (Random quantity between 1 and 3 each)
+        for i in range(0,4):
+            food.append(random.randint(1,3))
+        StoreFlag = 0
 
-    # checks the interger in irole to list correct options
-    # after the correct action is entered flag is turned off
-    if irole == 1: # Waiter options
-        print("Read Menu: (1)Entrees (2)Wines (3)Sides (4)Desserts")
-        action = input("Enter your choice:")
-        iaction = int(action)  # convert to int
 
-        if 1 > iaction or iaction > 4:
-            print("\n[Enter a number between 1 and 4]")
+
+    # -----prompt the user to input a role-----
+    # Waiter Customer Manager
+    # Loops until input is not between 1-3
+    role_flag = 1
+    while role_flag:
+        print ("\nWhat [role] do you want? (Type corresponding number)")
+        print ("(1)Waiter (2)Customer (3)Manager")
+        role = input("Enter your choice:")
+
+        irole = int(role) #convert to int
+
+        # checks the interger in irole
+        # after the correct role is entered flag is turned off
+        if 1 > irole or irole > 3:
+            print ("\n[Enter a number between 1 and 3]")
         else:
+            role_flag = 0
+
+
+    # prompt the user an action based on role
+    # Waiter Customer Manager
+    action_flag = 1
+    while action_flag:
+        print("\nWhat [action] do you want? (Type corresponding number)")
+
+        # checks the interger in irole to list correct options
+        # after the correct action is entered flag is turned off
+        if irole == 1: # Waiter options-------------------------------------------
+            print("Read Menu: (1)Entrees (2)Wines (3)Sides (4)Desserts (5)all")
+            action = input("Enter your choice:")
+            iaction = int(action)  # convert to int
+
+            # Resets the flag if correct number was chosen
+            if 1 > iaction or iaction > 5:
+                print("\n[Enter a number between 1 and 4]")
+            else:
+                action_flag = 0
+
+            #Displays the information based on the correct number entered.
+            if iaction == 1:
+                for i in range(0,3):
+                    print(FoodDict[i], food[i])
+            elif iaction == 2:
+                for i in range(3,5):
+                    print(FoodDict[i], food[i])
+            elif iaction == 3:
+                for i in range(5,9):
+                    print(FoodDict[i], food[i])
+            elif iaction == 4:
+                for i in range(8,12):
+                    print(FoodDict[i], food[i])
+            elif iaction == 5:
+                for idx, i in enumerate(food):
+                    print(FoodDict[idx], i)
+
+        elif irole == 2: # Customer options-------------------------------------------
+            print("(1)Order Food (2)Random Order")
+            action = input("Enter your choice:")
+            iaction = int(action)  # convert to int
+
+            if 1 > iaction or iaction > 2:
+                print("\n[Enter a number between 1 and 2]")
+            else:
+                action_flag = 0
+
+        elif irole == 3: # Manager options-------------------------------------------
+            print("(1)Close (2)Open")
+            action = input("Enter your choice:")
+            iaction = int(action)  # convert to int
+
+            # Resets the flag if correct number was chosen
+            if 1 > iaction or iaction > 2:
+                print("\n[Enter a number between 1 and 2]")
+            else:
+                action_flag = 0
+
+            # Takes action based on choice
+            if iaction == 1: # Close
+                for i in range(0,3):
+                    StoreFlag = 2
+            elif iaction == 2: # Open
+                    StoreFlag = 1
+
+        else:
+            print ("Role out of bounds error, retry")
             action_flag = 0
 
-    elif irole == 2: # Customer options
-        print("(1)Order Food (2)Random Order")
-        action = input("Enter your choice:")
-        iaction = int(action)  # convert to int
 
-        if 1 > iaction or iaction > 2:
-            print("\n[Enter a number between 1 and 2]")
-        else:
-            action_flag = 0
-
-    elif irole == 3: # Manager options
-        print("(1)Close (2)Open")
-        action = input("Enter your choice:")
-        iaction = int(action)  # convert to int
-
-        if 1 > iaction or iaction > 2:
-            print("\n[Enter a number between 1 and 2]")
-        else:
-            action_flag = 0
-
-    else:
-        print ("Role out of bounds error, retry")
-        action_flag = 0
