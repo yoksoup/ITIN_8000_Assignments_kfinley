@@ -53,6 +53,7 @@ bytes_val = dOldINT.to_bytes(2, 'big')
 # open a bin and wirte bytes to it
 file = open("Days_Old.bin", "wb")
 file.write(bytes_val)
+# close the file that is being worked on
 file.close()
 
 
@@ -67,3 +68,5 @@ with open('UserData.csv', 'w', newline='') as csvfile:
     # call writer and wright the user data
     writer.writeheader()
     writer.writerow({'last_name': lname, 'first_name': fname, 'Favorite_Color': favC, 'Days_Old': dOldINT})
+    # close the file that is being worked on
+    csvfile.close()
