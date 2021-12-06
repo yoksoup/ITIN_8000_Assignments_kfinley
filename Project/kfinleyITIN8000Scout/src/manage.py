@@ -2,8 +2,15 @@
 ------------------------------------------------------------
 created by Kyle Finley for ITIN 8000 Final Project
 ------------------------------------------------------------
-1. This is the main file for the Scout Server app
-run this with:
+This is the main file for the Scout Web server.
+
+1.Setup:
+a. Make sure Django is installed. Go to src folder and:
+> pip install django
+> python manage.py makemigrations
+> python manage.py migrate --run-syncdb
+
+b. Then run this with:
 > python manage.py runserver
 
 2. Description: The main tasks of the program is to create objects for a database,
